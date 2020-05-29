@@ -1,0 +1,29 @@
+-------------------Wordpress Installation on Ubuntu 18.04-----------------------------
+
+
+sudo su
+apt-get update
+apt-get upgrade -y
+a2enmod rewrite
+sudo apt install  php libapache2-mod-php mysql-server php-mysql -y
+apt-get install php7.2-mysql
+apt-get update
+apt install php php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
+systemctl status apache2
+apt install unzip
+cd /var/www/html
+wget http://wordpress.org/latest.zip
+unzip latest.zip
+chown -R www-data:www-data wordpress
+cd wordpress
+mv wp-config-sample.php wp-config.php
+nano wp-config.php
+mysql -u admin -h rds_host -p
+CREATE DATABASE wordpress;
+cd /etc/apache2
+nano apache2.conf
+cd sites-available
+nano 000-default.conf
+service apache2 restart
+
+------------------------------------------------------------------------------------
